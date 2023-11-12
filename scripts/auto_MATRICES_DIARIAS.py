@@ -22,8 +22,9 @@ import pandas as pd
 #-----------Cargar archivos------------------------
 
 #Carpeta
-folder = '/home/fernando.huaranca/datos/Datos_GSMAP/testeo_septiembre_fallados'
+#folder = '/home/fernando.huaranca/datos/Datos_GSMAP/testeo_septiembre_fallados'
 
+folder = '/home/fernando.huaranca/datos/Datos_GSMAP/daily_G_v8'
 #Lista de archivos dentro de la carpeta
 FileS = os.listdir(folder)
 
@@ -74,7 +75,8 @@ for file in FileS:
         print(f'Se inicia la extraccion de variables de interes de {path}')
         
         #Matriz bidimensional de precipitaciones diarias. Redondeamos
-        pp = np.round(var[0],3)
+        #Dado que tenemos mm/h en nuestros datos lo multiplicamos por 24
+        pp = np.round(var[0],3) * 24
 
         #Array con longitudes
         lon = var[1]
@@ -99,7 +101,7 @@ for file in FileS:
         print(f'Se inicia la creacion de {name_file}.npz')
 
         #Ruta completa del archivo donde guardar los datos
-        out_path = f'/home/fernando.huaranca/test_satellite/problematicos/{name_file}.npz'
+        out_path = f'/home/fernando.huaranca/datosmunin3/Gsmap_24hs/{name_file}.npz'
 
         # Guardar los arreglos en el archivo
 
@@ -126,7 +128,7 @@ print(fallidos)
 df = pd.DataFrame({'Archivos': fallidos})
 
 # Guarda el DataFrame en un archivo CSV
-nombre_archivo = "archivos_fallados.csv"
+nombre_archivo = "/home/fernando.huaranca/datosmunin3/archivos_fallados.csv"
 df.to_csv(nombre_archivo, index=False)
 
 

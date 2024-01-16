@@ -54,7 +54,7 @@ for file in FileS:
     #Ruta del archivo
 
     print('Leyendo ruta del archivo',file)
-    path = os.path.join(folder,file)
+   
 
 
     #------------Subset-del-archivo----------------------------------
@@ -67,7 +67,7 @@ for file in FileS:
     try:
 
         #Utilizamos la funcion para realizar un subset
-        var = gsmap.read_gsmap_subset(path , ini_lon , end_lon , ini_lat , end_lat )
+        var = gsmap.read_gsmap_subset(file , ini_lon , end_lon , ini_lat , end_lat )
 
         print(f'Subset de {file} finalizado')
 

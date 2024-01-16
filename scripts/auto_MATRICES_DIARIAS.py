@@ -86,8 +86,7 @@ for file in FileS:
         lat = var[2]
 
         #Extraer la fecha del file
-
-        fecha_str = file.split('.')[1]
+        fecha_str = file.split('.')[2]
         fecha_datetime = datetime.strptime(fecha_str, '%Y%m%d')
 
         # Formatear la fecha como YYYY-MM-DD

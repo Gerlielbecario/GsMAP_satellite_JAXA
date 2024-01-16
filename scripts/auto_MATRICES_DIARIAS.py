@@ -18,6 +18,7 @@ import os
 from datetime import datetime
 import numpy as np
 import pandas as pd
+import glob
 
 #-----------Cargar archivos------------------------
 
@@ -26,7 +27,7 @@ import pandas as pd
 
 folder = '/home/fernando.huaranca/datos/Datos_GSMAP/daily_G_v8'
 #Lista de archivos dentro de la carpeta
-FileS = os.listdir(folder)
+FileS = glob.glob(folder+'/*dat.gz')
 
 print('Lista de archivos cargada')
 #----------Limites--para-el-subset--------------------------------
@@ -89,8 +90,8 @@ for file in FileS:
         fecha_str = file.split('.')[1]
         fecha_datetime = datetime.strptime(fecha_str, '%Y%m%d')
 
-        # Formatear la fecha como DD-MM-YYYY
-        name_file = fecha_datetime.strftime('%d-%m-%Y')
+        # Formatear la fecha como YYYY-MM-DD
+        name_file = fecha_datetime.strftime('%Y-%m-%d')
 
 
         print(f'Se extrajo las variables de {file} correctamente')
@@ -101,7 +102,7 @@ for file in FileS:
         print(f'Se inicia la creacion de {name_file}.npz')
 
         #Ruta completa del archivo donde guardar los datos
-        out_path = f'/home/fernando.huaranca/datosmunin3/Gsmap_24hs/{name_file}.npz'
+        out_path = f'/home/fernando.huaranca/datosmunin3/Gsmap_24hs/Gsmap_R0.1_24hs_{name_file}.npz'
 
         # Guardar los arreglos en el archivo
 
